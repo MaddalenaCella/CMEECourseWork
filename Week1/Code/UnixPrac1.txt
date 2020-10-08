@@ -1,0 +1,1 @@
+wc -l 407228326.fasta 407228412.fasta E.coli.fasta
