@@ -1,1 +1,27 @@
-wc -l 407228326.fasta 407228412.fasta E.coli.fasta
+#the code assumes that one is running it from the data directory ../Week1/data/
+
+#1
+#count how many lines there are in each file
+wc -l E.coli.fasta 407228412.fasta 407228326.fasta
+
+#2
+#Print everything starting from the second line for the E. coli genome
+awk 'NR>1' E.coli.fasta
+
+#3
+#count the sequence length of the E.coli genome
+awk '/^>/ {if (seqlen) print seqlen;print;seqlen=0;next} {seqlen+=length($0)}END{print seqlen}' E.coli.fasta
+
+#4
+#Count the matches of a the sequence “ATGC” in the genome of E. coli
+#start by removing the first line and newline characters
+tail -n +2 ../Data/E.coli.fasta | tr -d '\n\'| grep -o "ATGC" | wc -l
+
+#5
+#compute AT/GC ratio
+#create variables nAT and nCG and divide them
+#nAT is the number of times A and T occur in the E.coli genome sequence
+#nCG is the number of times C and G occur in the E.coli genome sequence
+nAT=`tail -n +2 ../Data/E.coli.fasta | tr -d '\n' | grep -o "A\|T" | wc -l < E.coli.fasta` && nCG=`tail -n +2 ../Data/E.coli.fasta | tr -d '\n' | grep -o "G\|C" | wc -l < E.coli.fasta` && expr $nAT / $nCG
+
+
