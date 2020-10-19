@@ -1,0 +1,673 @@
+Starting weekly feedback for Maddalena, Week1
+
+Current Points = 100
+
+Note that: 
+(1) Major sections begin with a double "====" line 
+(2) Subsections begin with a single "====" line 
+(3) Code output or text file content are printed within single "*****" lines 
+
+======================================================================
+======================================================================
+Your Git repo size this week is about 1.50 MiB on disk 
+
+PART 1: Checking project workflow...
+
+Found the following directories in parent directory: .git, Feedback, Week1, Week2
+
+Found the following files in parent directory: README.txt, .gitignore, .DS_Store, temp.py
+
+Checking for key files in parent directory...
+
+Found .gitignore in parent directory, great! 
+
+Printing contents of .gitignore:
+
+**********************************************************************
+*~ 
+*.tmp
+
+**********************************************************************
+
+Found README in parent directory, named: README.txt
+
+Printing contents of README.txt:
+
+**********************************************************************
+CMEECourseWork is a `<utility/tool/feature>` that allows `<insert_target_audience>` to do `<action/task_it_does>`.
+
+Additional line of information text about what the project does. Your introduction should be around 2 or 3 sentences. Don't go overboard, people won't read it.
+
+## Prerequisites
+
+Before you begin, ensure you have met the following requirements:
+<!--- These are just example requirements. Add, duplicate or remove as required --->
+* You have installed the latest version of `<coding_language/dependency/requirement_1>`
+* You have a `<Windows/Linux/Mac>` machine. State which OS is supported/which is not.
+* You have read `<guide/link/documentation_related_to_project>`.
+
+## Installing <project_name>
+
+To install <project_name>, follow these steps:
+
+Linux and macOS:
+```
+<install_command>
+```
+
+Windows:
+```
+<install_command>
+```
+## Using <project_name>
+
+To use <project_name>, follow these steps:
+
+```
+<usage_example>
+```
+
+Add run commands and examples you think users will find useful. Provide an options reference for bonus points!
+
+## Contributing to <project_name>
+<!--- If your README is long or you have some specific process or steps you want contributors to follow, consider creating a separate CONTRIBUTING.md file--->
+To contribute to <project_name>, follow these steps:
+
+1. Fork this repository.
+2. Create a branch: `git checkout -b <branch_name>`.
+3. Make your changes and commit them: `git commit -m '<commit_message>'`
+4. Push to the original branch: `git push origin <project_name>/<location>`
+5. Create the pull request.
+
+Alternatively see the GitHub documentation on [creating a pull request](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request).
+
+## Contributors
+
+Thanks to the following people who have contributed to this project:
+
+* [@scottydocs](https://github.com/scottydocs) 📖
+* [@cainwatson](https://github.com/cainwatson) 🐛
+* [@calchuchesta](https://github.com/calchuchesta) 🐛
+
+You might want to consider using something like the [All Contributors](https://github.com/all-contributors/all-contributors) specification and its [emoji key](https://allcontributors.org/docs/en/emoji-key).
+
+## Contact
+
+If you want to contact me you can reach me at <your_email@address.com>.
+
+## License
+<!--- If you're not sure which open license to use see https://choosealicense.com/--->
+
+This project uses the following license: [<license_name>](<link>).
+**********************************************************************
+
+======================================================================
+Looking for the weekly directories...
+
+Found 2 weekly directories: Week1, Week2
+
+The Week1 directory will be assessed 
+
+======================================================================
+======================================================================
+PART 2: Checking weekly code and workflow...
+
+======================================================================
+Assessing WEEK1...
+
+Found the following directories: Data, Code, sandbox, Results
+
+Found the following files: README.md, .DS_Store
+
+Checking for readme file in weekly directory...
+
+Found README in parent directory, named: README.md
+
+Printing contents of README.md:
+
+**********************************************************************
+## Week1
+
+Week1 is a folder containing the first three assignments of the CMEE Masters programme that contains data and code for Unix/Linux commands and shell scripts 
+
+The Week1 directory is further organised in two subdirectories, Data and Code. They contain the necessary files and commands to perform the Unix/Linux and shell scripting assignmnets. 
+
+## Prerequisites
+
+Before you begin, ensure you:
+
+* have a `<Linux/Mac>` machine. 
+* have a code editor (for example Visual Studio Code, Atom, WIM, etc...)
+
+You are not required extra packages to be able to reproduce the assignmnets on your device.
+
+## Contents of Code subdirectory
+
+In the Code sub-directory you can find the following shell script files:
+
+* boilerplate.sh : a shell script that prints 'This is a shell script'
+* ConcatenateTwoFiles.sh : a shell script that concatenates the content of two input files
+* CountLines.sh : a shell script that counts the files in a file
+* csvtospace.sh : a shell script that converts csv files to space delimited files
+* MyExampleScript.sh : a shell script that prints ' Hello ' followed by the User name
+* variables.sh : a shell script showing the use of variables
+* tabtocsv.sh : a shell script that converts tab-delimited files into csv files
+* tiff2png.sh : a shell script that converts a tif file into png file
+
+And the following text file:
+* UnixPrac1.txt : a text file containing 5 Unix shell commands to perform certain tasks on some FASTA files
+
+## Contents of the Data and Data/Temperatures/ subdirectories
+
+In the Data sub-directory you can find the following FASTA files dowloaded from https://github.com/mhasoba/TheMulQuaBio/tree/master/content/data/fasta:
+
+* 407228326.fasta
+* 407228412.fasta
+* E.coli.fasta
+
+You can find the following variables created when running the last line of code of UnixPrac1.txt:
+
+* nAT
+* nCG
+
+Within the Data/Temperatures/ sub-directory you can find the following csv files obtained from https://github.com/mhasoba/TheMulQuaBio/tree/master/content/data/Temperatures:
+
+* 1800.csv
+* 1801.csv
+* 1802.csv
+* 1803.csv
+
+And their outputs after running the csvtospace.sh shell script:
+
+* 1800.csvtab.csv
+* 1801.csvtab.csv
+* 1802.csvtab.csv
+* 1803.csvtab.csv
+
+## Running UnixPrac1.txt
+
+To be able to perform the five UNIX shell commands on the FASTA files (available at https://github.com/mhasoba/TheMulQuaBio/tree/master/content/data/fasta) you need to run each line on your terminal making sure to be in the correct directory.
+
+## Running csvtospace.sh
+
+To be able to run this shell script that converts csv files into space delimited files, you need write over some csv files. For the assignmnet, I run it on the Temperature csv files available at https://github.com/mhasoba/TheMulQuaBio/tree/master/content/data/Temperatures.
+
+## Running the improved shell scripts
+
+Run the improved shell scripts on your terminal making sure to have the correct input files.
+
+## Contributors
+
+Thanks to [@mhasoba](https://github.com/mhasoba) for teaching me the skills to ba able to perform the Week1 assignments, my group (group 4) and PokMan for the incredible help and support.
+
+
+## Contact
+
+If you want to contact me you can reach me at <mc2820@ic.ac.uk>.
+
+**********************************************************************
+
+Results directory is empty - good! 
+
+Found 9 code files: ConcatenateTwoFiles.sh, tiff2png.sh, UnixPrac1.txt, variables.sh, CountLines.sh, csvtospace.sh, boilerplate.sh, tabtocsv.sh, MyExampleScript.sh
+
+======================================================================
+Testing script/code files...
+
+======================================================================
+Inspecting script file ConcatenateTwoFiles.sh...
+
+File contents are:
+
+**********************************************************************
+#!/bin/bash
+# Author: Maddalena Cella mc2820@ic.ac.uk
+# Script: ConcatenateTwoFiles.sh
+# Description: concatenate two files
+#
+# Arguments: 1 -> file, 2 --> file
+# Date: Oct 2020
+
+if [ "$1" == "" ] || [ "$2" == "" ] || [ "$3" == "" ] 
+then
+    echo "Please provide two input files you want to concatenate and the name of the output file"
+else
+    cat $1 > $3 # concatenate and print content of $1, then redirected into $3
+    cat $2 >> $3 # concatenate and print content of $2, then redirected into $3
+    echo "Merged file is $3"
+    cat $3 # print the concatenated file $3
+    echo
+    # move file to data directory
+    echo "Moving $3 to ../Week1/Data/"
+    mv $3 ../Week1/Data/ # move $3 to data directory
+    exit
+fi
+
+**********************************************************************
+
+Testing ConcatenateTwoFiles.sh...
+
+Output (only first 500 characters): 
+
+
+**********************************************************************
+Please provide two input files you want to concatenate and the name of the output file
+
+**********************************************************************
+
+Code ran without errors
+
+Time consumed = 0.00834s
+
+======================================================================
+Inspecting script file tiff2png.sh...
+
+File contents are:
+
+**********************************************************************
+#!/bin/bash
+# Author: Maddalena Cella mc2820@ic.ac.uk
+# Script: tiff2png.sh
+# Description: convert tiff files into png files
+# Date: Oct 2020
+
+if [ -f $f ] # check if file exists
+then 
+	if [ -s $f ] # check if file has content
+	then
+	    if file "$f" | grep -q tif$ # check if file is in the correct format
+	    then 
+	        for f in *.tif; #if it is in the correct format then for all the .tif files ...
+                do  
+                	echo "Converting $f"; 
+                    convert "$f"  "$(basename "$f" .tif).png";  # convert them into .png
+            done
+	    else
+	        echo 'Please provide a .tif input file'
+	        exit
+        fi 
+	else
+	    echo 'The file is empty'
+	    exit
+    fi
+else
+	echo 'The file does not exist'
+	exit
+fi 
+
+**********************************************************************
+
+Testing tiff2png.sh...
+
+Output (only first 500 characters): 
+
+
+**********************************************************************
+Please provide a .tif input file
+
+**********************************************************************
+
+Code ran without errors
+
+Time consumed = 0.00700s
+
+======================================================================
+Inspecting script file UnixPrac1.txt...
+
+File contents are:
+
+**********************************************************************
+#the code assumes that one is running it from the data directory ../Week1/data/
+
+#1
+#count how many lines there are in each file
+wc -l E.coli.fasta 407228412.fasta 407228326.fasta
+
+#2
+#Print everything starting from the second line for the E. coli genome
+awk 'NR>1' E.coli.fasta
+
+#3
+#count the sequence length of the E.coli genome
+awk '/^>/ {if (seqlen) print seqlen;print;seqlen=0;next} {seqlen+=length($0)}END{print seqlen}' E.coli.fasta
+
+#4
+#Count the matches of a the sequence “ATGC” in the genome of E. coli
+#start by removing the first line and newline characters
+tail -n +2 ../Data/E.coli.fasta | tr -d '\n\'| grep -o "ATGC" | wc -l
+
+#5
+#compute AT/GC ratio
+#create variables nAT and nCG and divide them
+#nAT is the number of times A and T occur in the E.coli genome sequence
+#nCG is the number of times C and G occur in the E.coli genome sequence
+nAT=`tail -n +2 ../Data/E.coli.fasta | tr -d '\n' | grep -o "A\|T" | wc -l < E.coli.fasta` && nCG=`tail -n +2 ../Data/E.coli.fasta | tr -d '\n' | grep -o "G\|C" | wc -l < E.coli.fasta` && expr $nAT / $nCG
+
+
+
+**********************************************************************
+
+Testing UnixPrac1.txt...
+
+======================================================================
+Inspecting script file variables.sh...
+
+File contents are:
+
+**********************************************************************
+#!/bin/bash
+# Author: Maddalena Cella mc2820@ic.ac.uk
+# Script: tabtocsv.sh
+# Description: sshows the use of variables with two examples
+#
+# Date: Oct 2020
+
+# Shows the use of variables
+MyVar='some string'
+echo 'the current value of the variable is' $MyVar
+echo 'Please enter a new string'
+while true; do
+    read MyVar
+
+    if [ -z "$MyVar" ] #if MyVar is not defined or empty
+    then
+        echo "No string entered"
+    else
+        break #if the variable is defined (you have entered a string), then break
+    fi
+done
+echo 'the current value of the variable is' $MyVar
+
+## Reading multiple values
+echo 'Enter two numbers separated by space(s)'
+while true; do
+    read a b
+
+    if [[ "$a" =~ ^[0-9]+$ || "$b" =~ ^[0-9]+$ ]] #check if a and b are numbers
+    then 
+        break #if they are, then exit the loop
+    else
+        echo "Error: the values you entered are not numbers" 
+    fi
+done
+
+echo 'you entered' $a 'and' $b '. Their sum is:'
+mysum=`expr $a + $b`
+echo $mysum
+exit
+**********************************************************************
+
+Testing variables.sh...
+
+Output (only first 500 characters): 
+
+
+**********************************************************************
+the current value of the variable is some string
+Please enter a new string
+No string entered
+No string entered
+No string entered
+No string entered
+No string entered
+No string entered
+No string entered
+No string entered
+No string entered
+No string entered
+No string entered
+No string entered
+No string entered
+No string entered
+No string entered
+No string entered
+No string entered
+No string entered
+No string entered
+No string entered
+No string entered
+No string entered
+No string entered
+No string en
+**********************************************************************
+
+Code ran without errors
+
+Time consumed = 10.05164s
+
+======================================================================
+Inspecting script file CountLines.sh...
+
+File contents are:
+
+**********************************************************************
+#!/bin/bash
+# Author: Maddalena Cella mc2820@ic.ac.uk
+# Script: CountLines.sh
+# Description: count the number of files present in a file
+#
+# Arguments: 1 -> file
+# Date: Oct 2020
+
+if [ "$1" == "" ] #check if file is null
+then 
+    echo "Please provide an input file you want to read"
+else
+    NumLines=`wc -l < $1` #create a variable that contains the count of the number of files in the file you have imputed
+    echo "The file $1 has $NumLines lines"
+    echo
+    exit
+fi
+ 
+
+
+**********************************************************************
+
+Testing CountLines.sh...
+
+Output (only first 500 characters): 
+
+
+**********************************************************************
+Please provide an input file you want to read
+
+**********************************************************************
+
+Code ran without errors
+
+Time consumed = 0.00810s
+
+======================================================================
+Inspecting script file csvtospace.sh...
+
+File contents are:
+
+**********************************************************************
+#!/bin/bash
+# Author: Maddalena Cella mc2820@ic.ac.uk
+# Script: csvtospace.sh
+# Description: substitute the commas in the files with spaces
+#
+# Saves the output into a .csv file but with spaces instead of commas 
+# Arguments: 1 -> comma delimited file
+# Date: Oct 2019
+
+echo "Creating a space delimited version of $1 ..."
+	
+if [ -f $1 ]
+then 
+	if [ -s $1 ]
+	then
+	    if [ ${1: -4} == ".csv" ] #file "$1" | grep -q csv$ ${1: -4} == ".txt" 
+	    then 
+	        cat $1 | tr -s "," " " > $1tab.csv
+	        echo "Done!"
+	        exit
+	    else
+	        echo 'The file cannot be converted into a tab delimited file'
+	        exit
+        fi 
+	else
+	    echo 'The file is empty'
+	    exit
+    fi
+else
+	echo 'The file does not exist'
+	exit
+fi 
+
+**********************************************************************
+
+Testing csvtospace.sh...
+
+Output (only first 500 characters): 
+
+
+**********************************************************************
+Creating a space delimited version of  ...
+The file cannot be converted into a tab delimited file
+
+**********************************************************************
+
+Encountered error (or warning):
+csvtospace.sh: line 16: [: ==: unary operator expected
+
+======================================================================
+Inspecting script file boilerplate.sh...
+
+File contents are:
+
+**********************************************************************
+#!/bin/bash
+# Author: Maddalena Cella mc2820@ic.ac.uk
+# Script: boilerplate.sh
+# Desc: simple boilerplate for shell scripts
+# Arguments: none
+# Date: Oct 2020
+
+echo -e "\nThis is a shell script! \n" #what does -e do?
+
+#exit
+**********************************************************************
+
+Testing boilerplate.sh...
+
+Output (only first 500 characters): 
+
+
+**********************************************************************
+
+This is a shell script! 
+
+
+**********************************************************************
+
+Code ran without errors
+
+Time consumed = 0.00703s
+
+======================================================================
+Inspecting script file tabtocsv.sh...
+
+File contents are:
+
+**********************************************************************
+#!/bin/bash
+# Author: Maddalena Cella mc2820@ic.ac.uk
+# Script: tabtocsv.sh
+# Description: substitute the tabs in the files with commas
+#
+# Saves the output into a .csv file
+# Arguments: 1 -> tab delimited file
+# Date: Oct 2020
+
+echo "Creating a comma delimited version of $1 ..."
+	
+if [ -f $1 ] #check if file exists
+then 
+	if [ -s $1 ] #check if file has content or not
+	then
+	    if file "$1" | grep -q text$ #check if file is a text file
+	    then 
+	        cat $1 | tr -s "\t" "," >> $1.csv #if the file is a text file then convert it into .csv
+	        echo "Done!"
+	        exit
+	    else
+	        echo 'The file is in the wrong format and cannot be converted into csv'
+	        exit
+        fi 
+	else
+	    echo 'The file is empty'
+	    exit
+    fi
+else
+	echo 'The file does not exist'
+	exit
+fi 
+**********************************************************************
+
+Testing tabtocsv.sh...
+
+Output (only first 500 characters): 
+
+
+**********************************************************************
+Creating a comma delimited version of  ...
+The file is in the wrong format and cannot be converted into csv
+
+**********************************************************************
+
+Code ran without errors
+
+Time consumed = 0.01075s
+
+======================================================================
+Inspecting script file MyExampleScript.sh...
+
+File contents are:
+
+**********************************************************************
+#!/bin/bash
+# Author: Maddalena Cella mc2820@ic.ac.uk
+# Script: MyExampleScript.sh
+# Description: prints Hello followed bu the Username
+#
+# Date: Oct 2020
+
+msg1="Hello"
+msg2=$USER
+echo "$msg1 $msg2"
+echo "Hello $USER"
+echo
+**********************************************************************
+
+Testing MyExampleScript.sh...
+
+Output (only first 500 characters): 
+
+
+**********************************************************************
+Hello mhasoba
+Hello mhasoba
+
+
+**********************************************************************
+
+Code ran without errors
+
+Time consumed = 0.01203s
+
+======================================================================
+======================================================================
+Finished running scripts
+
+Ran into 1 errors
+
+======================================================================
+======================================================================
+
+FINISHED WEEKLY ASSESSMENT
+
+Current Points for the Week = 100
+
+NOTE THAT THESE ARE POINTS, NOT MARKS FOR THE WEEK!
