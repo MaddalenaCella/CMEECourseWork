@@ -15,7 +15,7 @@ then
 	then
 	    if [ ${1: -4} == ".csv" ] #file "$1" | grep -q csv$ ${1: -4} == ".txt" 
 	    then 
-	        cat $1 | tr -s "," " " > $1tab.csv
+	        cat $1 | tr -s "," " " > $1tab.csv #converts ',' into space ' '
 	        echo "Done!"
 	        exit
 	    else

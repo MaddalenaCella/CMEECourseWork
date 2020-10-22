@@ -1,19 +1,19 @@
 ## Week1
 
-Week1 is a folder containing the first three assignments of the CMEE Masters programme that contains data and code for Unix/Linux commands and shell scripts 
+Week1 is a folder containing data and code for Unix/Linux commands and shell scripts as well as the first three assignments of the CMEE Masters programme
 
-The Week1 directory is further organised in two subdirectories, Data and Code. They contain the necessary files and commands to perform the Unix/Linux and shell scripting assignmnets. 
+The Week1 directory is further organised in two subdirectories, Data and Code. They contain the necessary files and commands to perform the Unix/Linux and shell scripting assignmnets. There is also an additional subdirectory containing some trial scripts.
 
 ## Prerequisites
 
 Before you begin, ensure you:
 
-* have a `<Linux/Mac>` machine. 
+* have a Linux or Mac machine. 
 * have a code editor (for example Visual Studio Code, Atom, WIM, etc...)
 
 You are not required extra packages to be able to reproduce the assignmnets on your device.
 
-## Contents of Code subdirectory
+## Content of Code subdirectory
 
 In the Code sub-directory you can find the following shell script files:
 
@@ -29,7 +29,7 @@ In the Code sub-directory you can find the following shell script files:
 And the following text file:
 * UnixPrac1.txt : a text file containing 5 Unix shell commands to perform certain tasks on some FASTA files
 
-## Contents of the Data and Data/Temperatures/ subdirectories
+## Content of Data and Data/Temperatures/ subdirectories
 
 In the Data sub-directory you can find the following FASTA files dowloaded from https://github.com/mhasoba/TheMulQuaBio/tree/master/content/data/fasta:
 
