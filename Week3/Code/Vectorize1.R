@@ -1,3 +1,14 @@
+#script that sums all elelments in a matrix
+#
+# ARGUMENTS
+# None
+#
+# INPUT
+# None
+#
+# OUTPUT
+# time it takes for the non-vectorised and vectorised matrix to run
+
 M <- matrix(runif(1000000),1000,1000)
 
 SumAllElements <- function(M){

@@ -76,7 +76,7 @@ And another .csv file I created containing two DNA sequences to align:
 
 ## Running Python files
 
-To run the python scripts make sure you are in the correct directory `Week3/Code/` and run them on Bash:
+To run the python scripts make sure you are in the correct directory `Week2/Code/` and run them on Bash:
 
 ```sh
 pyhton3 <script_name> 

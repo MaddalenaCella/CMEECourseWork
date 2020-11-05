@@ -1,3 +1,13 @@
+#!/bin/env Rscript
+
+# Author: Maddalena Cella mc2820@ic.ac.uk
+# Script: control_flow.R
+# Description: examples of conditional and for loops
+# Input: Rscript control_flow.R
+# Output: outcomes of conditional and for loops
+# Arguments:0
+# Date: October 2020
+
 a <- TRUE
 if (a == TRUE){
     print ("a is TRUE")

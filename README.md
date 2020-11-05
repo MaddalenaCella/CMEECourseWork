@@ -40,7 +40,7 @@ To use the code the scripts present in this directory, simply run the code on yo
 Thanks to the following people who have contributed to this project:
 
 * [@mhasoba](https://github.com/mhasoba)
-* [@ph-u] (https://github.com/ph-u)
+* [@ph-u](https://github.com/ph-u)
 * group 4 team members: Billy B Lam, Yewshen Lim, Benjamin James Nouhan, Mohamad Muhieddine and Cong Liu.
 
 ## Contact

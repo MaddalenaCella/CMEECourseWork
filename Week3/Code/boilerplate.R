@@ -1,5 +1,14 @@
-# A boilerplate R script
+#!/bin/env Rscript
 
+# Author: Maddalena Cella mc2820@ic.ac.uk
+# Script: boilerplate.R
+# Description: example of function
+# Input: Rscript boilerplate.R
+# Output: statements produced by function
+# Arguments:0
+# Date: October 2020
+
+# A boilerplate R script
 MyFunction <- function(Arg1, Arg2){
   
   # Statements involving Arg1, Arg2:

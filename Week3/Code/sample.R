@@ -1,3 +1,13 @@
+#!/bin/env Rscript
+
+# Author: Maddalena Cella mc2820@ic.ac.uk
+# Script: sample.R
+# Description: loops, preallocation and vectorisation
+# Input: Rscript sample.R
+# Output: running times of different functions
+# Arguments:0
+# Date: October 2020
+
 ######### Functions ##########
 
 ## A function to take a sample of size n from a population "popn" and return its mean

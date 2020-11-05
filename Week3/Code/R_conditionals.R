@@ -1,3 +1,13 @@
+#!/bin/env Rscript
+
+# Author: Maddalena Cella mc2820@ic.ac.uk
+# Script: R_conditionals.R
+# Description: functions with conditionals
+# Input: R_conditionals.R
+# Output: various outputs from functions
+# Arguments:0
+# Date: October 2020
+
 # Checks if an integer is even
 is.even <- function(n = 2){
   if (n %% 2 == 0)
