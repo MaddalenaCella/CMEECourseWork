@@ -16,15 +16,17 @@ import re
 # Type your code here:
 
 # Get the user's home directory.
-home = subprocess.os.path.expanduser("~")
+#home = subprocess.os.path.expanduser("~")
+CMEECourseWork= subprocess.os.path.expanduser("~/Documents/CMEECourseWork/")
 
 # Create a list to store the results.
 FilesDirsStartingWithC = []
 
 # Use a for loop to walk through the home directory.
-for (dir, subdir, files) in subprocess.os.walk(home):
-    if dir.startswith('C')==True:
-        FilesDirsStartingWithC.append(dir) 
+for (dir, subdir, files) in subprocess.os.walk(CMEECourseWork):
+    for i in subdir:
+        if i.startswith('C')==True:
+            FilesDirsStartingWithC.append(i) 
     for j in files:
         if j.startswith('C')==True:
             FilesDirsStartingWithC.append(j)
@@ -39,10 +41,10 @@ FilesDirsStartingWithC
 FilesDirsStartingWithcC = []
 
 # Use a for loop to walk through the home directory.
-for (dir, subdir, files) in subprocess.os.walk(home):
-    for i in dir:
+for (dir, subdir, files) in subprocess.os.walk(CMEECourseWork):
+    for i in subdir:
         if i.startswith('C')==True or i.startswith('c')==True:
-           FilesDirsStartingWithcC.append(dir) 
+           FilesDirsStartingWithcC.append(i) 
     for j in files:
         if j.startswith('C')==True or j.startswith('c')==True:
             FilesDirsStartingWithcC.append(j)
@@ -55,26 +57,8 @@ FilesDirsStartingWithcC
 # Type your code here:
 DirsStartingWithcC=[]
 
-for (dir, subdir, files) in subprocess.os.walk(home):
-    for i in dir:
+for (dir, subdir, files) in subprocess.os.walk(CMEECourseWork):
+    for i in subdir:
         if i.startswith('C')==True or i.startswith('c')==True:
-           DirsStartingWithcC.append(dir)
+           DirsStartingWithcC.append(i)
 DirsStartingWithcC
-
-'''
-sample =[]
-for (dir, subdir, files) in subprocess.os.walk(home):
-    p=str(dir)
-    sample=re.findall(r'\sU.+', p)
-sample 
-
-
-sample =[]
-for (dir, subdir, files) in subprocess.os.walk(home):
-    for i in dir:
-        if i.startswith("C")==True:
-            sample.append(dir)
-    for j in files:
-        if j.startswith("C")==True:
-            sample.append(j)
-sample 
