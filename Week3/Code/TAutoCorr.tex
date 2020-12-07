@@ -1,0 +1,31 @@
+\documentclass[12pt,letterpaper] {article}  
+
+\usepackage{amssymb}
+
+\usepackage{amsmath}
+
+\title {Autocorrelation in weather}
+
+\author {Maddalena Cella}
+
+\date {\today}
+
+\begin{document}
+  \maketitle
+
+  \section{Research Question}
+  The R script TAutoCorr.R aims to answer the question: \textit{Are temperatures of one year significantly 
+  correlated with the next year, across years in a given location?} 
+
+  \section{Results}
+  The approximate p-value was calculated as the fraction of the correlation coefficients obtained from the
+  permutations (a) that were greater than the correlation coefficient from the unpermuted dataset (b).
+
+  \begin{equation*}
+    pvalue = \frac{instances\ of\ a > b}{total\ number\ of\ a(s)}\ = 0.0\\
+  \end{equation*}
+
+  \section{Interpretation}
+  At a given location, the temperatures of successive years are significantly correlated.
+
+\end{document}
