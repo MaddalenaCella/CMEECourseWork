@@ -1,0 +1,314 @@
+# CMEE 2020 HPC excercises R code HPC run code proforma
+
+rm(list=ls()) # clear ws
+#turn off graphics
+#source("MaddalenaCella_HPC_2020_main.R") #load all the functions needed
+
+# Question 1
+species_richness <- function(community){
+rich<- length(unique(community))
+return (rich)
+}
+
+# Question 2
+init_community_max <- function(size){
+max_comm<- seq(from=1, to=as.numeric(size)) 
+return (max_comm) 
+}
+
+# Question 3
+init_community_min <- function(size){
+ min_comm <- rep(1, as.numeric(size))
+ return (min_comm) 
+}
+
+# Question 4
+choose_two <- function(max_value){
+#set.seed(123)
+rand<- sample(1:max_value, size=2, replace=FALSE)
+return(rand)
+}
+
+# Question 5
+neutral_step <- function(community){
+pick<-choose_two(length(community))
+die<- pick[1]
+reproduce<- pick[2]
+community_new<- replace(community, die, community[reproduce]) 
+return(community_new)
+}
+
+# Question 6
+neutral_generation <- function(community){
+comm<- length(community)
+if ((comm %%2 ) !=0) {
+      round_down<- floor(comm/2)
+      round_up<- ceiling(comm/2)
+      up_down <- c(round_up, round_down)
+      #set.seed(123)
+      n_steps<-sample(up_down,1)}
+if ((comm%%2)==0) {
+   n_steps<- comm/2
+}
+community_new<- community
+for(steps in 1:n_steps){
+  new_comm<- neutral_step(community_new)
+  community_new<- new_comm
+}
+return(community_new)
+}
+
+# Question 7
+neutral_time_series <- function(community, duration)  {
+time_series<- species_richness(community)
+community_g<- community
+for (g in 1:duration){
+  gen<- neutral_generation(community)
+  richness <- species_richness(gen)
+  time_series <- c(time_series, richness)
+  community_g<- gen
+}  
+return(time_series)
+}
+
+# Question 8
+question_8 <- function() {
+  # clear any existing graphs and plot your graph within the R window
+  y <-neutral_time_series(community=init_community_max(100), duration=200)
+  x <- seq(from=0, to=200, by=1)
+  plot(x,y, type='p', ylim=c(0,100), col='red', pch=17, xlab='Number of generations', ylab="Species Richness")
+  return("If you wait long enough, the system will always converge to a dynamic equilibrium 
+  with an intermediate level of species richness.")#does it converge to monodominance???
+}
+
+# Question 9
+neutral_step_speciation <- function(community,speciation_rate)  {
+pick<-choose_two(length(community))
+die<- pick[1]
+reproduce<- pick[2]
+
+#set.seed(123)
+sam<-sample(c(1, 2),1, prob= c((1-speciation_rate),speciation_rate))
+    if (sam==1){
+      community_new<- replace(community, die, community[reproduce])
+    }
+    if (sam==2){
+      new_sp<- max(community)+1
+      community_new<- replace(community, die, new_sp)
+    }
+return(community_new)  
+}
+
+# Question 10
+neutral_generation_speciation <- function(community,speciation_rate)  {
+comm<- length(community)
+if ((comm %%2 ) !=0) {
+      round_down<- floor(comm/2)
+      round_up<- ceiling(comm/2)
+      up_down <- c(round_up, round_down)
+      set.seed(123)
+      n_steps<-sample(up_down,1)}
+if ((comm%%2)==0) {
+   n_steps<- comm/2
+}
+community_new<- community
+for(steps in 1:n_steps){
+  new_comm<- neutral_step_speciation(community_new, speciation_rate)
+  community_new<- new_comm
+}
+return(community_new)
+}  
+
+
+# Question 11
+neutral_time_series_speciation <- function(community,speciation_rate,duration)  {
+time_series<- species_richness(community)
+community_g<-community
+for (g in 1:duration){
+  gen<- neutral_generation_speciation(community_g, speciation_rate)
+  richness <- species_richness(gen)
+  time_series <- c(time_series, richness)
+  community_g<- gen
+}  
+return(time_series) 
+}
+
+# Question 12
+question_12 <- function()  {
+  # clear any existing graphs and plot your graph within the R window
+  dev.off()
+  y <-neutral_time_series_speciation(community=init_community_max(100), speciation_rate=0.1, duration=200)
+  x <- seq(from=0, to=200, by=1)
+  y1 <-neutral_time_series_speciation(community=init_community_min(100), speciation_rate=0.1, duration=200)
+  x1 <- seq(from=0, to=200, by=1)
+  
+  plot(x1,y1, type='p', ylim=c(0,100), col='red', pch=17, xlab='Number of generations', ylab="Species Richness")
+  points(x,y, pch=21, col= 'blue', type='p')
+  legend('topright', legend=c("Maximum richness", "Mono-dominance"), col=c('blue','red'), pch=c(21,17), bty='o', text.col='black', title="Initial population state:")
+
+  return("Initial conditions have a strong effect on the results of the simulation....")
+}
+
+# Question 13
+species_abundance <- function(community)  {
+freq_col<-as.data.frame(table(community))$Freq
+abun_comm<- sort(freq_col, decreasing=TRUE)
+
+return(abun_comm)
+}
+
+# Question 14
+octaves <- function(abundance_vector) {
+
+  #n<- (floor((log(max(abundance_vector)))/(log(2))))+1
+  #n_octaves<- n+1
+  log_abundance<- floor(((log(abundance_vector))/log(2)))+1
+  #for (s in abundance_vector){
+   # position<- floor((log(max(s)))/(log(2)))
+    #actual_bin<-n+1
+  
+  octaves<-tabulate(log_abundance, 
+  nbins=(floor((log(max(abundance_vector)))/(log(2))))+1)  
+return(octaves)
+}
+
+# Question 15
+sum_vect <- function(x, y) {
+if(length(x)==length(y)){
+  sum= x+y
+} 
+if(length(x) != length(y)){
+  n<- max(length(x),length(y))
+  length(x)<-n
+  length(y)<-n
+  x[is.na(x)]<-0
+  y[is.na(y)]<-0
+  sum=x+y
+}
+
+return(sum)
+}
+
+
+# Question 16 
+question_16 <- function() {
+  # clear any existing graphs and plot your graph within the R window
+  dev.off()
+  comm<- init_community_max(100)
+  for(i in 1:200){ #run neutral model simulation for 200 gens
+    y <-neutral_generation_speciation(community=comm, speciation_rate=0.1)
+    comm<- y}
+
+sp_ab<-species_abundance(y) #obtain abundance and octaves after 200 gens
+oct<-octaves(sp_ab)
+
+sao<- oct #empty vector that will contain sum octaves
+  for(i in 1:2000){
+    y <-neutral_generation_speciation(community=comm, speciation_rate=0.1)
+    comm<- y
+    if (i %% 20==0){ #every twenty record octave abundance
+      sp_ab_i<-species_abundance(y)
+      oct_i<-octaves(sp_ab_i)
+      summ<- sum_vect(sao, oct_i)
+      sao<- summ #mean octave abundance: sum divided by number of elements in the vector
+    }
+  }
+avg_sao<- sao/(2000/20) #total sum/ number of times I did the addition
+
+comm_min<- init_community_min(100)
+  for(i in 1:200){ #run neutral model simulation for 200 gens
+    y_min <-neutral_generation_speciation(community=comm_min, speciation_rate=0.1)
+    #print(y)
+    #x<- neutral_generation_speciation(community=y, speciation_rate=0.1)
+    #print(x)
+    comm_min<- y_min}
+
+sp_ab_min<-species_abundance(y_min) #obtain abundance and octaves after 2000 gen
+oct_min<-octaves(sp_ab_min)
+
+sao_min<- oct_min #empty vector that will contain avg octaves
+  for(i in 1:2000){
+    y_min <-neutral_generation_speciation(community=comm_min, speciation_rate=0.1)
+    comm_min<- y_min
+    if (i %% 20==0){ #every twenty record octave abundance
+      sp_ab_i_min<-species_abundance(y_min)
+      oct_i_min<-octaves(sp_ab_i_min)
+      sao_min<- sum_vect(sao_min, oct_i_min) #mean octave abundance
+    }
+  }
+avg_sao_min<- sao_min/(2000/20)
+
+df_sao <-rbind(avg_sao, avg_sao_min)
+
+#barplot
+x<-c('1', '2-3', '4-8', '9-16', '17-32', '33-64', '65-128')
+z<-c(2,5,8,11,14,17,20)
+barplot(df_sao, xlab='Abundance octave', ylab='Average number of species', ylim=c(0,10),
+col= c('red','blue'), beside=TRUE)
+axis(1, at=z,labels=x)
+legend('topright', c('Maximum initial richness', 'Initial monodominance'),
+fill= c('red','blue'))
+
+return("The initial condition of the system does not appear to matter. In fact, over time, both when starting with a maximum initial richness or with mono-dominance, 
+the community will converge to a state where most species are rare, and very few are common.")
+}
+
+# Question 17
+cluster_run <- function(speciation_rate, size, wall_time, interval_rich, interval_oct, burn_in_generations, output_file_name) {
+
+#parameters of the function
+p1<-speciation_rate
+p2<-size
+p3<-wall_time
+p4<-interval_rich
+p5<-interval_oct
+p6<-burn_in_generations
+
+#simulations start here
+community_start<- init_community_min(size=size)
+rich<- species_richness(community_start)
+oct_v<- octaves(species_abundance(community_start))
+oct<-list(oct_v)
+i<-0
+start_time<-proc.time()
+repeat{ 
+new_comm<- neutral_generation_speciation(community_start,speciation_rate)
+community_start<-new_comm
+i<-i+1
+current_time<-proc.time()
+    if (isTRUE(((current_time[3]-start_time[3])/60)>=wall_time)){break}
+    if(i %% interval_rich==0 & i < burn_in_generations){
+      new_rich<- species_richness(new_comm)
+      rich<- rbind(rich, new_rich)}
+    if(i%% interval_oct==0){
+      sp_ab_new<-species_abundance(new_comm)
+      oct_new<-octaves(sp_ab_new)
+      oct<- append(oct, list(oct_new))}
+
+    }
+
+save(rich, oct, new_comm, current_time, p1, p2, p3, p4, p5, p6, file= toString(output_file_name))
+  
+}
+
+iter<- as.numeric(Sys.getenv("PBS_ARRAY_INDEX")) #for cluster runs
+#iter<- 20 #for local testing
+
+set.seed(iter) #set random seed to iter
+speciation_rate= 0.0038613 #from HPC_getmyspeciationrate
+
+#different community sizes based on iter number
+if (iter<=25){
+    size=5000}
+if (iter>25 & iter<= 50){
+    size=1000}
+if (iter>50 & iter <= 75){
+    size=2500}
+if (iter>75 & iter <=100){
+    size=500
+}
+
+file_output_name<- paste("res_", iter,".rda", sep="")
+
+cluster_run(speciation_rate=speciation_rate, size=size, wall_time=690, interval_rich=1,
+interval_oct=size/10, burn_in_generations=8*size, output_file_name= file_output_name)
