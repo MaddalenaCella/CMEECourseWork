@@ -1,0 +1,8 @@
+*~ 
+*.tmp
+.DS_Store
+.RHistory
+.RData
+__pycache__
+Sandbox 
+.tmd
