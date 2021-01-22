@@ -1,0 +1,365 @@
+\documentclass[a4paper]{article}
+
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{blindtext}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{natbib}
+\usepackage{placeins}
+
+\usepackage[scaled]{helvet}
+
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage{xurl}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{courier}
+\usepackage{setspace}
+\usepackage{lineno}
+\usepackage[table,svgnames]{xcolor}
+\usepackage{fancyvrb} 
+\usepackage{listings}
+\usepackage{caption}
+\usepackage{longtable}
+\usepackage{relsize}
+\usepackage{tfrupee}
+\usepackage{rotating}
+\usepackage{lipsum}
+\usepackage{subcaption}
+\usepackage{float}
+\usepackage{aliascnt}
+\usepackage{pdfpages}
+\usepackage{graphicx}
+\usepackage{caption}
+
+\newcommand\wordcount{\input{../Data/CMEEproject.sum}} % Obtaining the word count from MiniProject.sum
+\captionsetup{
+  compatibility = false
+}
+% Set up caption options for figures
+\captionsetup[figure]{
+  font = it,
+  labelfont = bf
+}
+\captionsetup[table]{
+font = it,
+labelfont = bf
+}
+\newcommand*{\urlprefix}{Available from: }
+\newcommand*{\urldateprefix}{Accessed }
+\renewcommand{\bibsection}{}
+
+\makeatletter
+\newcommand\footnoteref[1]{\protected@xdef\@thefnmark{\ref{#1}}\@footnotemark}
+\makeatother
+
+\newcommand*{\ORGeqfloat}{}
+\let\ORGeqfloat\eqfloat
+\def\eqfloat{%
+	\let\ORIGINALcaption\caption
+	\def\caption{%
+		\addtocounter{equation}{-1}%
+		\ORIGINALcaption
+	}%
+	\ORGeqfloat
+}
+
+\addto\captionsenglish{% Replace "english" with the language you use
+	\renewcommand{\contentsname}%
+	{List of Contents}%
+}
+
+\newcommand\tab[1][1cm]{\hspace*{#1}}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+	backgroundcolor=\color{backcolour},   
+	commentstyle=\color{codegreen},
+	keywordstyle=\color{magenta},
+	numberstyle=\tiny\color{codegray},
+	stringstyle=\color{codepurple},
+	basicstyle=\ttfamily\footnotesize,
+	breakatwhitespace=false,         
+	breaklines=true,                 
+	captionpos=b,                    
+	keepspaces=true,                 
+	numbers=left,                    
+	numbersep=5pt,                  
+	showspaces=false,                
+	showstringspaces=false,
+	showtabs=false,                  
+	tabsize=2,
+	xleftmargin=0.5cm,
+	xrightmargin=-0.8cm,
+	frame=lr,
+	%	framesep=-5pt,
+	framerule=0pt
+}
+
+\lstset{style=mystyle}
+
+\definecolor{Teal}{RGB}{0,128,128}
+\definecolor{NewBlue1}{RGB}{4,100,226}
+\definecolor{NiceBlue}{RGB}{63,104,132}
+\definecolor{DarkRed}{RGB}{14,53,59}
+\definecolor{NewBlue2}{RGB}{62,100,125}
+\definecolor{NewBlue3}{RGB}{44,100,128}
+
+\hypersetup{
+	colorlinks,
+	citecolor=NiceBlue,
+	linkcolor=NewBlue1,
+	urlcolor=Blue
+	%	citebordercolor=Violet,
+	%	filebordercolor=Red,
+	%	linkbordercolor=Blue
+}
+
+\usepackage{geometry}
+\linespread{1.25}
+\usepackage[parfill]{parskip} % Avoid indentation
+
+\geometry{
+	a4paper,
+	left=4cm,
+	right=2.5cm,
+	top=2.5cm,
+	bottom=2.5cm,
+}
+\onehalfspacing
+\linenumbers
+
+% -------- Fancy page headers:
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{\slshape\nouppercase\leftmark}
+\lhead{\slshape\nouppercase{\rightmark}}
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\footrulewidth}{1pt}
+
+\lfoot{\thepage}
+\rfoot{\thepage}
+
+\begin{document}
+	\pagenumbering{gobble}
+	\begin{center}
+		{\large IMPERIAL COLLEGE LONDON SILWOOD CAMPUS}
+	\end{center}
+	%	\maketitle
+	\vspace{4cm}
+	
+	\begin{center}
+		
+		\Huge CMEE MiniProject\\Modelling Mesophilic Bacteria growth at optimal and sub-optimal temperatures\\		
+		\vspace{1cm}		
+		\large {Word Count: \wordcount}
+		
+	\end{center}
+	\vspace{2cm}
+	\begin{center}
+		\Large Maddalena Cella\\email address: mc2820@ic.ac.uk
+	\end{center}
+	
+	\vspace{5cm}
+	\begin{center}
+		{\large A report submitted in partial fulfilment of the \\requirements for the MRes Computational Methods in Ecology and Evolution }
+	\end{center}
+	
+	\begin{center}
+		{\large December 2020}
+	\end{center}		
+
+	\newpage
+
+\cleardoublepage\pagenumbering{arabic}
+
+\section{Abstract}
+The interest in describing population growth with models dates back to the eighteenth century, since then, a variety of mathematical models have been developed to describe growth of a variety of organisms. Population growth models are extensively used in microbiology to compare growth rates of microbes cultured in a variety of media and temperature combinations. Temperature is one of the physical factors that affects growth rate: as it decreases, in fact, so does enzyme activity, causing growth rate to slow down and the growth curve to change its overall shape, becoming shallower. I hypothesised that such change in the growth curve of microbes grown outside their optimal temperature range, would reflect in a difference in performance between phenomenological and mechanistic models, with the latter, having population properties as parameters, being better able to account for growth curve changes at different temperatures. To verify my hypothesis, I fitted two linear and a non-linear model to the growth curves of bacteria cultured within and outside their optimum temperature range. Both below and above the mesophilic temperature cutoff used (15°C), the logistic and cubic models were able to better fit a larger proportion of the growth curves, whereas the quadratic model had a lower performance in both datasets. Unlike my initial expectations, however, it was the cubic model that performed better at sub-optimal temperatures. Nevertheless, this is likely to be caused by factors other than temperature, since temperature alone was not found to affect model performance.
+
+\pagebreak
+
+\section{Introduction}
+Mathematical models are now widely used in different biological fields including ecology and evolution \citep{johnson2004model} and a number of them have been developed to describe microbial growth in food and culture media \citep{Fujikawa2004ANL}. Interest in describing patterns of population growth dates back to the 18\textsuperscript{th} century when Thomas Malthus described the rate of human population growth as exponential.\par
+The exponential equation is still widely used in biology to describe the growth of microorganism which, at least in their 'growth phase', is well captured by this equation. However, natural populations do not grow indefinitely following an exponential trend, as their growth rates are regulated by population density. In its simplest form, density-dependent growth has an exponential shape when population size (N) is very small and levels off as N becomes larger \citep{HASTINGS2013175}. This patterns can be described with a quadratic (\ref{eqn:quadratic})  or cubic polynomial function (\ref{eqn:cubic}):
+
+\begin{equation}
+\label{eqn:quadratic} 
+Nt= a*t + b* t\textsuperscript{2}  
+\end{equation}
+
+\begin{equation}
+\label{eqn:cubic}
+Nt = a*t + b* t\textsuperscript{2} + c*t\textsuperscript{3} \end{equation}
+
+where \textit{a}, \textit{b} and \textit{c} are constants.\par
+
+Phenomenological models, such as those mentioned above, can often successfully describe the growth curves of many microorganisms, nevertheless, mechanistic models are generally preferred as they relate to the processes that generated the data and the parameters they use have biological definitions that can be measured independently in each particular dataset \citep{liberles2013need}. While mechanistic models have been generally proven to be more successful at describing biological data patters, they are not easy to fit as initial parameters are often hard to estimate correctly or the definitions of such parameters are sometimes vaguely defined \citep{levins1966strategy}. In certain circumstances a simpler linear model might be sufficient to describe the biological phenomenon of interest. \par
+
+The earliest mechanistic model to describe density dependent growth is the logistic (or Verhulst) model \citep{verhulst1838notice}. It was originally proposed in the eighteenth century to introduce an upper bound for the increase in population size \citep{TSOULARIS200221}. It is based on the notion that changes in population size over a certain period of time is proportional to the current population size, its growth rate and the maximum population size that an environment can sustain, often referred to as carrying capacity \citep{PELEG2007808}. The model is described by the formula: 
+
+\begin{equation}
+\label{eqn:logistic}
+\frac{dN(t)}{dt} = rN(t) \left( 1- \frac{N(t)}{K} \right) 
+\end{equation}; 
+
+where \textit{dN(t)/dt} is the growth rate at the current time, \textit{r} is the growth rate of the population and \textit{K} is the carrying capacity of the environment (sometimes referred to as N\textsubscript{max}). This model and its various implementations have been used to describe a variety of biological systems from yeasts \citep{carlson1913geschwindigkeit} to elephants \citep{morgan1976stochastic} \citep{TSOULARIS200221}. \par
+
+\cite{pla2015comparison} observed that the literature regarding which growth models best describe microorganisms growth is not conclusive and hypothesised that this might be caused by the variety of microorganisms used and the differences in growth conditions between cultures. Temperature is one of the factors that mostly affects microbial growth and it could therefore also influence model performance \citep{Fujikawa2004ANL, doi:10.1080/10408398.2011.570463}. Microbes grown outside their optimal temperature range show a decreased rate of growth caused by decreased affinity of their enzymes to the substrate, lower membrane fluidity and metabolic activity \citep{10.1111/j.1574-6941.1999.tb00639.x, amato2009energy}. This often produces a flatter growth curve, as it can be observed in the growth curves of \textit{Tetraselmis tetrahele}, \textit{Lactobacillus plantarum} and \textit{Arthrobacter globiformis} grown at optimal and sub-optimal temperatures (\ref{fig:growthcurves}).\par 
+
+Every bacterial species has specific optimal growth temperatures, largely determined by the temperature requirements of its enzymes, as supported by the correlation between growth temperature and enzyme optima \citep{engqvist2018correlating}. I, therefore, hypothesised that below those optimal growth temperatures, where the growth rate is slower and the characteristic time lag phase less pronounced, mechanistic models would often perform better than phenomenological ones. This is because the parameters of the former have biological definitions that can be specified for each unique dataset the model is fitted for \citep{liberles2013need}. In order to verify this hypothesis, I fitted both linear and non-linear models to a group of mesophilic bacteria grown within their ideal temperature range and below it. \par
+In particular, the questions that this study aims to answer are: \par
+1) which model(s) best describe population growth of mesophilic bacteria grown within their optimal temperature range?
+\par
+2) which model(s) best describe population growth of mesophilic bacteria grow at sub-optimal temperatures?
+\par
+3) Do 1 and 2 differ? 
+\par
+4) Does temperature affect model performances?
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{../Results/Comp_curves.pdf}
+    \caption{Growth curves of three mesophilic bacteria grown within their optimal temperature range (on the left) and below their optimal temperature range (on the right)}
+    \label{fig:growthcurves}
+\end{figure}
+
+\section{Methods}
+Multiple studies have been conducted looking at changes in the biomass or number of cells of a variety of microbes grown in different substrates and at different temperatures \citep{bae2014growth,bernhardt2018metabolic,galarz2016predicting,gill1991growth,roth1962continuity,silva2018modelling,gill1991growth,sivonen1990effects,stannard1985temperature,zwietering1994modeling,PHILLIPS1987173}. Data from these studies have been collected and summarised in a dataset available at \url{https://github.com/mhasoba/TheMulQuaBio/blob/master/content/data}.
+
+    \subsection{The dataset and data subsets creation}
+    The dataset was downloaded from \url{https://github.com/mhasoba/TheMulQuaBio/blob/master/content/data/LogisticGrowthData.csv} and contains information on the change in biomass or number of cells in a colony over time from a variety of studies carried out across the world.
+    
+    I started by removing from the dataset known psychrotrophs and populations for which the exact bacterial composition was unknown. I also removed negative time measurements and population sizes, assuming that recording of population growths started at time 0 and that population sizes could not drop below 0. Additionally, I decided to omit data points were population size was measured in OD\_595, which differs from the other data units that are on the opposite based on count or weight. OD\_595 stands for Optical Density at a wavelength of 595 nm and is commonly used to estimate the relative concentration of bacteria or other cells in a liquid \citep{ParishJH1985BoBG}. Optical density is largely based on light scattering and provides a relative measure of turbidity of the sample compared to that of a reference \citep{ParishJH1985BoBG}. A problem of this measure is that it often generates negative values if the sample is more turbid than the bacteria population sample. Moreover, the relationship between OD and biomass is not always linear, probably because OD is also a function of cell morphology such as size and shape, which can affect how light gets transmitted or scattered. Therefore, in species where cell morphology, size and density change during growth, this method is not an accurate representation of biomass change over time \citep{10.1371/journal.pone.0097269}. Finally, I excluded population IDs for which the number of population size measurements were less than 5, in order to avoid overfitting. \par
+    
+    After cleaning the dataset, I proceeded to dividing it into two subsets based on temperatures at which microbes were grown at. I chose 15°C as the cutoff between optimal and sub-optimal temperature ranges. This cutoff temperature appeared biologically meaningful based on \cite{HARTEL2005448}, who describes mesophilic soil bacteria as having an optimum temperature range between 15°C and 40°C. While other papers suggest different cutoff ranges, the agreement seems to be that mesophilic bacteria do not grow as well at temperatures below 10°C/15°C degrees. The choice of 15°C as cutoff temperature allowed me, additionally, to have a quite balanced dataset for comparison (with 65 curves above 15°C and 69 curves below 15°C).
+    
+    \subsection{Model fitting}
+    Model fitting was conducted in R (v.3.6.2) \citep{Rcit}. I started by fitting a phenomenological quadratic model and a cubic polynomial model to the data points. 
+    Subsequently, I moved onto fitting one mechanistic model to the data: namely the logistic (or Verhulst) model (\ref{eqn:logistic}).\newline For non-linear model fitting I used the R package "minpack.lm". The logistic model requires three starting parameters to be estimated: the starting population size (N\textsubscript{0}), the carrying capacity (N\textsubscript{max}) and the maximum growth rate (r\textsubscript{max}). In order to find the correct starting parameters, I firstly made some inferences about their possible value based on their biological meaning: in particular, for N\textsubscript{0}, I used the minimum population size in each curve, for N\textsubscript{max} I used the highest population size measure and for r\textsubscript{max} I used the steepest slope of the straight line passing through the data points in the growth phase. To optimise the fitting across multiple datasets, I sampled 100 times the N\textsubscript{0} and the N\textsubscript{max} from a normal distribution having the inferred parameter estimate for before as the mean and a standard deviation of 1. Since I was less confident about the mean of the r\textsubscript{max}, I sampled the starting value from a uniform distribution having 0 as the lower limit for the distribution and one unit over the inferred starting value as the upper limit. 
+    
+    \subsection{Model(s) selection}
+    Model selection based on AIC scores was performed in R (v.3.6.2) \citep{Rcit}.\newline
+    Given that the 'best model' represents the one that is better supported by the data, I used the Akaike information criterion (AIC) to identify such model (or set of models). The AIC is an estimate of the information lost when using a model to describe the observed data \citep{johnson2004model} and is calculated as follows:
+\begin{equation}
+\label{eqn:AIC}
+AIC = -2 ( ln ( likelihood )) + 2 K
+\end{equation}
+
+where likelihood is the probability of the data given a model and K represents the degrees of freedom (\citep{doi:10.1177/0049124104268644}). 
+    I used a difference of two units as the significance threshold between two models \citep{doi:10.1177/0049124104268644}. \newline I was also interested in whether temperature was altering the performance of each individual model fitted, therefore I pooled the two datasets and for each model, I looked if there was a correlation between the Akaike weight of each growth curve and temperature. The Akaike weights values can be obtained from the AIC scores by calculating the relative likelihood of a model divided by the sum of the likelihoods across all models and provide a relative weight of evidence for each model \citep{johnson2004model, symonds2011brief}:
+    
+\begin{equation}
+ w_i =\frac{exp(-\frac{1}{2}\Delta _i)}{ \sum_{r=1}^{R} exp(-\frac{1}{2}\Delta _r)}
+\end{equation}
+
+    where $\Delta i$ is the difference between the AIC value of the best model and the AIC values for the other models.
+    
+    \subsection{Models performance in three bacteria species}
+    I decided to use three species of bacteria to display the performance of the different models between optimal and sub-optimal temperatures. The two colonies I compared for \textit{Tetraselmis tetrahele}, \textit{Lactobacillus plantarum} and \textit{Arthrobacter globiformis} were all grown in the same substrate, in order to limit the factors that could explain differences in the growth curves and model performance. 
+    
+    \subsection{Tools used}
+    I used R (v.3.6.2) \citep{Rcit} for data wrangling, model fitting and plotting. The additional packages used were \textit{tidyverse} \citep{tidyverse} and \textit{plyr} for data manipulation and plotting, \textit{minpack.lm} \citep{minpack.lm} for nonlinear least-squares (NLSS) fitting and \textit{patchwork} \citep{patchwork} to facilitate multi-panel plotting.
+	\LaTeX was used to write the report and a bash script was then written to sequentially run each of the workflow steps. All scripts and data used are available at \url{https://github.com/MaddalenaCella/CMEECourseWork/tree/master/CMEEMiniProject}.
+
+\section{Results}
+
+    \subsection{Overall models performance}
+When looking at the pooled dataset the logistic and the cubic models seem to have a similar performance: both being the best models for around 43\%\ of the growth curves. The quadratic model, on the opposite, was the one that was less supported by the data with only 14\%\ of the growth curves being better described by it (Figure: \ref{fig:overallbarplots}).
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{../Results/Mod_bars_overall.pdf}
+\caption{Plot of the percentages of curves in the pooled dataset for which the three models had a better fit based on AIC scores.}
+    \label{fig:overallbarplots}
+\end{figure}
+
+When comparing model performance between the two datasets (above 15°C and below 15°C), the logistic model appears to be the one that performs better on a larger proportion of mesophiles growth curves within their optimal temperature range, with 54\%\ of the curves being best described by it (Figure \ref{fig:modbarplots}). On the other side, for microbes grown outside their ideal temperature ranges, a linear cubic model seems to perform better than the logistic model, with 49\%\ of the microbes growth curves being best described by it, compared to a success rate of 42\%\ for the logistic model (Figure \ref{fig:modbarplots}). 
+Both in the above 15 degrees and below 15 degrees subsets, the one that had an overall lower performance based on AIC scores is the quadratic model that had a better fit for 12\%\ and 9\%\ of the growth curves respectively (Figure \ref{fig:modbarplots}). \par
+
+The observed differences in model performance between datasets however, were not caused by temperature, as I found no relationship between temperature and Akaike weights for each of the three models fitted (logistic model= R\textsuperscript{2}= 0.014, F(1,118)= 2.712, p= 0.102; cubic model=  R\textsuperscript{2}= 0.011, F(1,118)= 2.352, p= 0.128; quadratic model= R\textsuperscript{2}= 0.005, F(1,118)= 0.353, p= 0.554). 
+ 
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{../Results/Mod_bars.pdf}
+\caption{Plot of the percentages of curves for which the three models had a better fit based on AIC scores in each subset. }
+    \label{fig:modbarplots}
+\end{figure}
+
+    \subsection{Model performance in three bacteria}
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{../Results/Comp_graphs.pdf}
+    \caption{Comparison of fitted lines from quadratic, cubic and logistic models. The plots of bacteria colonies grown within their optimal range are on the left; whereas those of colonies grown at sub-optimal temperatures are on the right. Each row represents respectively the growth of \underline{T.tetrahele}, \underline{A.globiformis}, \underline{L.plantarum} }
+    \label{fig:comparisons}
+\end{figure}
+
+\begin{table}[H]
+\caption{Table containing AIC values for the three models fitted to the three bacteria species and starting parameters for the logistic model. The best model(s) for each subset is flagged with an asterisk(*). When comparing between models, a difference of two AIC units is considered to be significant.}
+\centering
+    \begin{tabular}{c|c|c||c|c||c|c}
+    \hline
+    \hline
+    \multicolumn{7}{c}{AIC}\\
+    \hline
+    \multirow{2}{*}{Subset}&
+    \multicolumn{2}{c||}{\textit{T.tetrahele}} &
+    \multicolumn{2}{c||}{\textit{A.globiformis}} &
+    \multicolumn{2}{c}{\textit{L.plantarum}}\\ 
+    & Above 15 & Below 15 & Above 15 & Below 15 & Above 15 & Below 15 \\
+    \hline
+    Quadratic & 1209 & 959 & 62* &107 & 1694 & 2417 \\
+    Cubic & 1194 & 948 & 60* & 103* & 1674 & 2414* \\
+    Logistic & 1153* & 943* & 67 & 110 & 1658* & 2417\\
+    \hline
+    \hline
+    \multicolumn{7}{c}{logistic model coefficients}\\
+    \hline
+    \multirow{2}{*}{Subset}&
+    \multicolumn{2}{c||}{\textit{T.tetrahele}} &
+    \multicolumn{2}{c||}{\textit{A.globiformis}} &
+    \multicolumn{2}{c}{\textit{L.plantarum}}\\ 
+    & Above 15 & Below 15 & Above 15 & Below 15 & Above 15 & Below 15 \\
+    \hline
+    N\textsubscript{0} & 16.677 & 472.844 & 9.676 & 6.015 & 3.502 & 66.734 \\
+    N\textsubscript{max} & 17493.228 & 20110.507 & 132.743 & 116.678 & 12618.914 & 3528.203 \\
+    r\textsubscript{max} & 0.039 & 0.008 & 0.037 & 0.011 & 0.419 & 0.020\\
+    \hline\hline
+    \end{tabular}
+\label{tab:hresult}
+\end{table}
+In the case of \textit{T.tetrahele} and \textit{A.globiformis}, model performance does not change if they were grown within their ideal temperature ranges (at 16°C and 20°C, respectively) or at lower temperatures ( 5°C and 7°C, respectively). However, in the case of \textit{L.plantarum}, the logistic model performed better than the other two at 25°C, while the cubic model had a better fit at 10°C. 
+
+\section{Discussion}
+Unlike my original expectations of a generally higher success rate of the logistic model compared to simpler phenomenological models, I found that the cubic polynomial model, was the one that better described a larger proportion of growth curves at sub-optimal temperature (\ref{fig:modbarplots}) and that in the pooled dataset the logistic and the cubic model performed equally well (\ref{fig:overallbarplots}). 
+The fact that the logistic model, despite having three population parameters specific to each curve, does not seem to describe the data better than a cubic polynomial model (\ref{fig:overallbarplots}) could happen because it does not account for the existence of a possible 'lag time' before the exponential growth phase \citep{PELEG2007808, BUCHANAN1997313, doi:10.1080/10408398.2011.570463}. When bacterial cells are transferred into a new environment, in fact, they often need a period of time to adapt \citep{BUCHANAN1997313}. This 'lag time' is specific to the particular combination of bacterial species and environmental conditions of interest and its presence can be observed as a long flat region at the beginning of the growth curve when plotting it on a semi-logarithmic scale \citep{BUCHANAN1997313, doi:10.1080/10408398.2011.570463}. Lacking this additional parameter, the logistic equation is only able to reliably model the exponential and stationary phases (carrying capacity) of a growth curve. Conversely, the cubic polynomial model, taking a sigmoidal shape, would be better at capturing growth curves with a 'lag time' phase. Nevertheless, not all growth curves examined in this project have a perfect sigmoidal shape, hence finding variable model performances instead of a unanimous agreement on the superiority of one or the other.\par
+
+As mentioned above, a downfall of the cubic model fitted to growth data is being strictly sigmoidal in shape, while the main problem of the logistic model is being unable to reliably model the 'lag time' phase. These issues have been resolved by developing mechanistic population growth models that include 'lag time' as an additional parameter: these include the Gompertz and the Baranyi models \citep{BUCHANAN1997313, baranyi1993non}. While there is not a unanimous agreement in the literature regarding the mechanistic model that better describes bacterial growth, the more parameterised ones generally outperform the simpler Verhulst model \citep{zwietering1994modeling, BUCHANAN1997313, pla2015comparison}.\par 
+
+In order to verify if the reason for which the logistic model performed as good as a simple linear model is underfitting of the former, it is necessary to fit more adequately parameterised models to the same growth curves and their AIC scores compared to those obtained in this study. \par
+
+While it appears that different models have different performances depending on the datasets (Figure \ref{fig:modbarplots}), such difference in performance cannot be attributed to temperature alone. It is probably a combination of factors including medium of growth, species and temperature requirements that has caused those particular curves to be better described by one model or the other in the subsets analysed (above15 and below15), as well as in the literature on the topic \citep{pla2015comparison}.\par
+
+The fact that temperature did not affect model performance was also reflected in the three species used as example: \textit{T.tetrahele}, \textit{A.globiformis} and \textit{L.plantarum}. These three species of bacteria show a flatter growth curve when they are grown below their ideal temperature ranges (\ref{fig:growthcurves}), however, unlike my expectations, the logistic model is able to outperform the linear models at sub-optimal temperatures just in the case of \textit{T.tetrahele}. Moreover, it appears that if one model has a better fit the growth curve at temperature within the optimum temperature range, that model would also be the one that better fits the curve at a lower temperature. This was true for \textit{T.tetrahele} and \textit{A.globiformis}, whereas in \textit{L.plantarum} the cubic model was the better fitting one at lower temperatures, while the logistic at higher temperatures. \par
+
+As well as underfitting, another pitfall important mentioning is the measure of model success used for this study. AIC, in fact, only measures the relative quality of a model compared to the other models fitted, not its absolute fit (goodness of fit). Therefore, the model with the lowest AIC could still fit the data poorly. This implies that in order to avoid meaningless inferences to be made, it is important for researchers to think carefully about the models they include in the candidate set \citep{johnson2004model}. Based on the general knowledge in the field and my findings in this project, I believe that none of the models I included fitted the data well and that I would need to include more mechanistic models in order to make more conclusive inferences regarding the effect of temperature on model performance. \par
+
+\section{Conclusion}
+In conclusion, I found that model performance does not seem to be affected by temperature. As a consequence, the differences between subsets in the proportion of curves that were better described by one or the other model were probably due to differences in the particular combinations of species, growth medium and temperature present in the two subsets. When looking at the pooled dataset, the cubic and the logistic model were the 'best-fitting' for the same proportion of curves. However, this could have also been caused by the fact that none of them had a good fit to the observed data. Further analysis including more parameterised models is necessary in order to corroborate the findings of this project.
+
+\pagebreak
+
+\section{References}
+\bibliographystyle{agsm}
+\bibliography{CMEEproject.bib}
+\pagebreak
+
+\end{document}          

@@ -22,11 +22,16 @@ __license__= 'None'
 
 import cProfile
 
-#run LV1 for profiling
+#run LV* for profiling
 import LV1
 cProfile.run('LV1.LV()', sort="tottime")
 
 import LV2
 cProfile.run('LV2.LV()', sort="tottime")
 
+import LV3
+cProfile.run('LV3.main()', sort='tottime')
+
+import LV4
+cProfile.run('LV4.main()', sort='tottime')
 

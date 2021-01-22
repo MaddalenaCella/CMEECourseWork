@@ -1,1 +1,8 @@
 Sandbox
+*~ 
+*.tmp
+__pycache__
+*.bbl
+*.blg
+*.pyc
+.Rhistory
