@@ -15,7 +15,6 @@
 # Date: January 2021
 
 rm(list=ls())
-options(warn=-1) #to suppress tidyverse warning summarise()
 
 #required packages
 suppressPackageStartupMessages(library(tidyverse))

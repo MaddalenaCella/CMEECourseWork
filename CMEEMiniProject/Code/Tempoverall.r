@@ -15,7 +15,7 @@
 # Date: January 2021
 
 rm(list=ls())
-options(warn=-1) #to suppress tidyverse warning summarise()
+
 #population growth dataset
 suppressPackageStartupMessages(library(plyr))
 suppressPackageStartupMessages(library(minpack.lm))
@@ -25,8 +25,7 @@ library(dplyr, warn.conflicts = FALSE)
 # Suppress summarise info
 options(dplyr.summarise.inform = FALSE)
 
-
-#import tidy dasets
+#import tidy datasets
 above15<- read.csv("../Data/tidy_above15.csv") 
 below15<- read.csv("../Data/tidy_below15.csv")
 
@@ -66,8 +65,8 @@ get_starting_parameters <- function(data_set){
     }
             
         r_max_start= r_max_start
-        t_lag_start <- -y_intercept/r_max_start
-        if (isTRUE(t_lag_start<0)){#maybe remove this
+        t_lag_start <- -y_intercept/r_max_start 
+        if (isTRUE(t_lag_start<0)){
             t_lag_start<-1
         }
         dataframe= data.frame(num_id=id, N_0_start=N_0_start, N_max_start=N_max_start, r_max_start=r_max_start, t_lag_start=t_lag_start)
@@ -80,6 +79,9 @@ logistic_model <- function(t, r_max, N_max, N_0){ # The classic logistic equatio
   return(N_0 * N_max * exp(r_max * t)/(N_max + N_0 * (exp(r_max * t) - 1)))
 }
 
+##Now fitting
+
+#quadratic model
 quad_fit= data.frame()
 for (id in unique(total_sub$num_id)){
     lm_quadratic= lm(PopBio ~ poly(Time,2), data=subset(total_sub, total_sub$num_id==id))
@@ -90,6 +92,7 @@ for (id in unique(total_sub$num_id)){
     dataframe= data.frame(ID=id, AIC= AIC, BIC=BIC, T=total_sub$Temp[total_sub$num_id==id], S=total_sub$Medium[total_sub$num_id==id], SP=total_sub$Species[total_sub$num_id==id])
     quad_fit=rbind(quad_fit, dataframe)}
 
+#cubic model
 cub_fit= data.frame()
 for (id in unique(total_sub$num_id)){
     lm_cubic= lm(PopBio ~ poly(Time,3), data=subset(total_sub, total_sub$num_id==id))
@@ -100,9 +103,10 @@ for (id in unique(total_sub$num_id)){
     dataframe= data.frame(ID=id, AIC= AIC, BIC=BIC, T=total_sub$Temp[total_sub$num_id==id],S=total_sub$Medium[total_sub$num_id==id], SP=total_sub$Species[total_sub$num_id==id])
     cub_fit=rbind(cub_fit, dataframe)}
 
+#starting parameters for logistic model
 start_total <- suppressWarnings(get_starting_parameters(total_sub))
 
-#fit logistic model to the data and retiurns a dataframe with AIC, BIC, predicted values and resiuduals
+#fit logistic model to the data and returns a dataframe with AIC, BIC, predicted values and residuals
 log_fit=data.frame()
 for (id in unique(total_sub$num_id)){
 set.seed(1234)
@@ -129,6 +133,8 @@ for (i in 1:100){
 log_fit$ID<- as.factor(log_fit$ID)
 log_fit$T<-as.numeric(log_fit$T)
 log_fit$AIC<-as.numeric(log_fit$AIC)
+
+#tidy up the dataframes for logistic model fitting, quadratic model fitting and cubic model fitting
 log_fit_summ<- log_fit %>% dplyr::group_by(ID) %>%
 dplyr::summarise(ID= ID[1],
          T= T[1],
@@ -136,7 +142,6 @@ dplyr::summarise(ID= ID[1],
           SP= SP[1],
          AIC= AIC[1],
          BIC= BIC[1])
-#log_fit_summ
 
 quad_fit$T<-as.numeric(quad_fit$T)
 quad_fit$AIC<-as.numeric(quad_fit$AIC)
@@ -158,10 +163,11 @@ dplyr::summarise(ID= ID[1],
          AIC= AIC[1],
          BIC= BIC[1])
 
-#add row of NA with ID=87
+#add row of NA with ID=87 for binding--> logistic model did not converge in that dataset
 new.row<- data.frame(ID=87, stringsAsFactors=F)
 df <-rbind.fill(log_fit_summ, new.row)
 
+# tidied dataframe with AIC values 
 id_AIC <- data.frame()
 for (id in unique(quad_fit_summ$ID)){
     AIC_Q <- quad_fit_summ$AIC[quad_fit_summ$ID==id]
@@ -174,11 +180,13 @@ for (id in unique(quad_fit_summ$ID)){
     id_AIC=rbind(id_AIC, dataframe)
 }
 
+#dataframe with additional row for the best fitting model (lowest AIC)
 new_AIC <- id_AIC %>% dplyr::group_by(ID) %>%
 dplyr::summarise(min= min(AIC_C, AIC_Q, AIC_L, na.rm=TRUE)) #AIC_G,
 
 merged_AIC <- merge(new_AIC, id_AIC, by="ID")
 
+#additional column that says which one is the best model in each particular curve
 best_AIC= data.frame()
 for(id in 1:length(unique(merged_AIC$ID))){
     if (isTRUE(merged_AIC$min[merged_AIC$ID==id]== merged_AIC$AIC_L[merged_AIC$ID==id])){
@@ -191,7 +199,6 @@ for(id in 1:length(unique(merged_AIC$ID))){
         dataframe=data.frame(ID=id, best= best)
         best_AIC= rbind(best_AIC, dataframe)
 }
-
 
 new_AIC <- merge(merged_AIC, best_AIC, by.x="ID")
 
@@ -206,6 +213,7 @@ for (id in unique(new_AIC$ID)){
     aic.weights <- rbind(aic.weights, dataframe)
 }
 
+#new dataframe with akaike weights
 new_AIC<- merge(new_AIC, aic.weights, by.x='ID')
 
 ##barplot with proportion of growt curves for which each of the odels had a better fit
@@ -217,6 +225,7 @@ plot_df<- data.frame(Data= c('Data','Data','Data'),
     Model= c('Logistic','Cubic','Quadratic'),
                      percentage_best=c(l,c,q))
 
+#save the barplot as pdf
 pdf(file='../Results/Mod_bars_overall.pdf', width=7, height=7) 
 q <- ggplot(data=plot_df, aes(x=Model, y=percentage_best))+
 xlab('Model fitted')+ ylab('Best model(%)')+

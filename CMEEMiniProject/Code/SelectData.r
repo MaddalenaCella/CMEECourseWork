@@ -15,7 +15,6 @@
 # Date: January 2021
 
 rm(list=ls())
-options(warn=-1) #to suppress tidyverse warning summarise() ##doesn't work
 ##packages
 suppressPackageStartupMessages(library(plyr))
 suppressPackageStartupMessages(library(tidyverse))
@@ -23,7 +22,6 @@ library(dplyr, warn.conflicts = FALSE)
 
 # Suppress summarise info
 options(dplyr.summarise.inform = FALSE)
-
 
 ##Imports
 quad_fit<-read.csv('../Results/Quadfit.csv')

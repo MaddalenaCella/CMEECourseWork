@@ -46,6 +46,8 @@ pdflatex CMEEproject.tex > /dev/null 2>&1
 
 mv CMEEproject.pdf ../Results  
 # moves output (pdf version of texfile) to Results
+
+ENDTIME=$(date +%s) 
 evince ../Results/CMEEproject.pdf 
 
 #remove extra files produced other than the pdf of the report
@@ -56,7 +58,5 @@ rm *.log
 rm *.out
 
 echo "LaTeX Compiled and unwanted files removed." 
-
-ENDTIME=$(date +%s)
 
 echo "It took $(($ENDTIME - $STARTTIME)) seconds to run this miniproject."
